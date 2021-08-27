@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { createLogicalOr } from "typescript";
 
 const LOCAL_STORAGE_KEY = "role";
 
@@ -18,8 +19,11 @@ export function RadioButton() {
   }, [role]);
 
   function handleToggle(e) {
-    const roleChoose = roleTransporterRef ? "transporter" : "shipper";
+    const { name, value } = e.target;
+    console.log(e.target.value);
+    const roleChoose = e.target.value;
     setRole(roleChoose);
+    console.log(roleChoose);
     alert(role);
   }
 
@@ -32,13 +36,14 @@ export function RadioButton() {
         <div className="bg-gray-200 rounded-lg">
           <div className="inline-flex rounded-lg">
             <input
-              ref={roleTransporterRef}
               type="radio"
               name="role_transporter"
               id="role_transporter"
               checked
               hidden
-              onClick={handleToggle}
+              style={{}}
+              value="transporter"
+              onChange={handleToggle}
             />
             <label
               htmlFor="role_transporter"
@@ -49,16 +54,16 @@ export function RadioButton() {
           </div>
           <div className="inline-flex rounded-lg">
             <input
-              ref={roleShipperRef}
               type="radio"
               name="role_shipper  "
               id="role_shipper"
               hidden
-              onClick={handleToggle}
+              value="shipper"
+              onChange={handleToggle}
             />
             <label
               htmlFor="role_shipper"
-              className="radio text-center self-center py-2 px-4 rounded-lg cursor-pointer hover:opacity-75"
+              className={`radio text-center self-center py-2 px-4 rounded-lg cursor-pointer hover:opacity-75`}
             >
               Shipper
             </label>

@@ -1,7 +1,44 @@
 import { Button } from "components/button";
-import React from "react";
+import ModalCreate from "../modals/ModalCreate";
+import React, { useState } from "react";
+import TableContent from "./TableContent";
 
 export function Main() {
+  const [showModalCreate, setShowModalCreate] = useState(false);
+
+  const driverList = [
+    {
+      driverName: "E",
+      phoneNumber: "+666",
+      createdAt: "2 August 2021",
+      status: "Active",
+    },
+    {
+      driverName: "D",
+      phoneNumber: "+666",
+      createdAt: "2 August 2021",
+      status: "Active",
+    },
+    {
+      driverName: "C",
+      phoneNumber: "+666",
+      createdAt: "2 August 2021",
+      status: "Active",
+    },
+    {
+      driverName: "BX",
+      phoneNumber: "+666",
+      createdAt: "2 August 2021",
+      status: "Active",
+    },
+    {
+      driverName: "A",
+      phoneNumber: "+666",
+      createdAt: "2 August 2021",
+      status: "Active",
+    },
+  ];
+
   return (
     <div className="px-7 mt-10">
       <div className="flex w-full justify-between mb-5 ">
@@ -22,7 +59,12 @@ export function Main() {
           </div>
         </div>
         <div className="flex items-end ">
-          <Button variant="btn-primary">Add New Driver</Button>
+          <Button
+            onClick={() => setShowModalCreate(true)}
+            variant="btn-primary"
+          >
+            Add New Driver
+          </Button>
         </div>
       </div>
       <div className="flex flex-col justify-center">
@@ -63,45 +105,19 @@ export function Main() {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  <tr>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="flex items-center">
-                        <div className="ml-4">
-                          <div className="text-sm font-medium text-gray-900">
-                            Jack
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">+666</div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span className=" inline-flex text-xs leading-5 font-semibold rounded-full">
-                        2 August 2021
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                        Active
-                      </span>
-                    </td>
-
-                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <a
-                        href="#"
-                        className="text-indigo-600 hover:text-indigo-900"
-                      >
-                        Edit
-                      </a>
-                    </td>
-                  </tr>
+                  {driverList.map((driver, key) => {
+                    return <TableContent key={key} driver={driver} />;
+                  })}
                 </tbody>
               </table>
             </div>
           </div>
         </div>
       </div>
+      <ModalCreate
+        isShowing={showModalCreate}
+        onClose={() => setShowModalCreate(false)}
+      />
     </div>
   );
 }
