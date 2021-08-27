@@ -15,6 +15,11 @@ export const Main: React.FC = () => {
             Docs
           </a>
         </Button>
+        <Button type="button" variant="btn-danger">
+          <a href="https://pankod.github.io/superplate/" target="_blank">
+            Docs
+          </a>
+        </Button>
       </div>
     </div>
   );

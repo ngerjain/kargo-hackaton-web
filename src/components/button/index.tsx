@@ -1,22 +1,14 @@
 import React from "react";
-
-export type IButton = React.DetailedHTMLProps<
-  React.ButtonHTMLAttributes<HTMLButtonElement>,
-  HTMLButtonElement
->;
-
-export const Button: React.FC<IButton> = ({
-  className = "",
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: string;
+}
+export const Button = ({
+  variant = "btn-primary",
+  className,
   children,
   ...rest
-}) => {
-  return (
-    <button
-      className={`py-2 px-4 rounded bg-green-500 hover:bg-green-600 focus:outline-none ring-opacity-75 ring-green-400 focus:ring text-white text-lg ${className}`}
-      {...rest}
-      data-testid="btn"
-    >
-      {children}
-    </button>
-  );
-};
+}: ButtonProps) => (
+  <button className={`${className} ${variant}`} {...rest}>
+    {children}
+  </button>
+);
