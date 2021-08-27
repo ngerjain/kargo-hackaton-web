@@ -1,7 +1,49 @@
 import { Button } from "components/button";
-import React from "react";
+import React, { useState } from "react";
+import ModalCreate from "../modals/ModalCreate";
+import TableContent from "./TableContent";
 
 export function Main() {
+  const [showModalCreate, setShowModalCreate] = useState(false);
+
+  const truckList = [
+    {
+      licenseNumber: "L 5213 BX",
+      truckType: "Container",
+      plateType: "Black",
+      status: "Active",
+      productionYear: "2019",
+    },
+    {
+      licenseNumber: "B 1999 BX",
+      truckType: "Tronton",
+      plateType: "White",
+      status: "Inactive",
+      productionYear: "2019",
+    },
+    {
+      licenseNumber: "AB 2021 BX",
+      truckType: "CDE",
+      plateType: "Yellow",
+      status: "Active",
+      productionYear: "2019",
+    },
+    {
+      licenseNumber: "AE 2837 BX",
+      truckType: "CDE",
+      plateType: "Black",
+      status: "Inactive",
+      productionYear: "2019",
+    },
+    {
+      licenseNumber: "AD 1111 BX",
+      truckType: "Tronton",
+      plateType: "Yellow",
+      status: "Active",
+      productionYear: "2019",
+    },
+  ];
+
   return (
     <div className="px-7 mt-10">
       <div className="flex w-full justify-between mb-5">
@@ -35,7 +77,12 @@ export function Main() {
           </div>
         </div>
         <div className="flex items-end">
-          <Button variant="btn-primary">Add New Truck</Button>
+          <Button
+            onClick={() => setShowModalCreate(true)}
+            variant="btn-primary"
+          >
+            Add New Truck
+          </Button>
         </div>
       </div>
       <div className="flex flex-col justify-center">
@@ -81,47 +128,20 @@ export function Main() {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                  <tr>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="flex items-center">
-                        <div className="ml-4">
-                          <div className="text-sm font-medium text-gray-900">
-                            L 5231 BX
-                          </div>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">Container</div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full">
-                        Yellow
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                        Active
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      2019
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <a
-                        href="#"
-                        className="text-indigo-600 hover:text-indigo-900"
-                      >
-                        Edit
-                      </a>
-                    </td>
-                  </tr>
+                  {truckList.map((truck, key) => {
+                    return <TableContent key={key} truck={truck} />;
+                  })}
                 </tbody>
               </table>
             </div>
           </div>
         </div>
       </div>
+
+      <ModalCreate
+        isShowing={showModalCreate}
+        onClose={() => setShowModalCreate(false)}
+      />
     </div>
   );
 }
