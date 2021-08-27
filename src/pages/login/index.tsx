@@ -1,4 +1,5 @@
 import { Button } from "components/button";
+import { RadioButton } from "components";
 import React from "react";
 
 export default function Login() {
@@ -30,7 +31,9 @@ export default function Login() {
               {/* <p className="text-gray-500">Please sign in to your account.</p> */}
             </div>
 
-            <div className="space-y-2">
+            <RadioButton />
+
+            {/* <div className="space-y-2">
               <label
                 htmlFor="email"
                 className="mb-5 text-sm font-medium text-gray-700 tracking-wide"
@@ -60,7 +63,7 @@ export default function Login() {
                 className="w-full content-center text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
                 placeholder="Enter your password"
               />
-            </div>
+            </div> */}
             <div className="mt-4">
               <Button className="w-full" variant="btn-success">
                 Sign in
